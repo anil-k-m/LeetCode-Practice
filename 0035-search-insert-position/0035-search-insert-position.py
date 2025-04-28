@@ -1,14 +1,23 @@
 class Solution:
+
+    def divideAndSearch(self, lb: int, ub: int, nums: List[int], target: int) -> int:
+        if lb == ub or lb + 1 == ub:
+            if nums[lb] == target or nums[lb] > target:
+                return lb
+            elif nums[ub] == target:
+                return ub
+            elif nums[ub] < target:
+                return ub + 1
+        mid = (lb + ub)//2
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] > target:
+            return self.divideAndSearch(lb, mid-1, nums, target)
+        else:
+            return self.divideAndSearch(mid + 1, ub, nums, target)
+
     def searchInsert(self, nums: List[int], target: int) -> int:
-        start_index = 0
-        end_index = len(nums) - 1
-        while start_index <= end_index:
-            if nums[start_index] == target or nums[start_index] > target:
-                return start_index
-            elif nums[end_index] == target:
-                return end_index
-            elif nums[end_index] < target:
-                return end_index + 1
-            start_index += 1
-            if start_index < end_index:
-                end_index -= 1
+        lb = 0
+        ub = len(nums) - 1
+        return self.divideAndSearch(lb, ub, nums, target)
+    
