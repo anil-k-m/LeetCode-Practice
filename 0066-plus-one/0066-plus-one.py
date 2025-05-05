@@ -12,7 +12,7 @@ class Solution:
                 digits[ind] = 1
                 digits.append(0)
             else:
-                digits[ind] += 1
+                digits[ind-1] += 1
         else:
             digits[-1] += 1
         return digits
