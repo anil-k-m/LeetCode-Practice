@@ -3,9 +3,9 @@ class Solution:
         for i in range(len(digits)-1, -1, -1):
             if digits[i] != 9:
                 digits[i] += 1
-                break
+                return digits
             digits[i] = 0
         if digits[0] == 0:
             digits[0] = 1
             digits.append(0)
-        return digits
+            return digits
